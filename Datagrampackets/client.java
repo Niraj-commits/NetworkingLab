@@ -1,4 +1,5 @@
 package Datagrampackets;
+
 import java.net.*;
 import java.util.Arrays;
 
@@ -15,17 +16,9 @@ public class client {
             DatagramPacket dp = new DatagramPacket(buffer1, 2, add, port);
             DatagramPacket receive = new DatagramPacket(buffer2, 2);
             ds.connect(add, port);
-            System.out.println("Bound : " + ds.isBound());
-            System.out.println("connected : " + ds.isConnected());
-            System.out.println("InetAddress : " + ds.getInetAddress());
-            System.out.println("Port : " + ds.getPort());
-            System.out.println("Remote Socket : " + ds.getRemoteSocketAddress());
-            System.out.println("Local Socket : " + ds.getLocalSocketAddress());
             ds.send(dp);
-            System.out.println("Data Packet Sent : ");
             ds.receive(receive);
             System.out.println("Data Received : " + Arrays.toString(receive.getData()));
-            System.out.println("Local Host : " + ds.getLocalPort());
             ds.setSoTimeout(100);
             ds.close();
         } catch (Exception e) {
